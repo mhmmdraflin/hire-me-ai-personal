@@ -31,11 +31,18 @@
       
           <!-- Nav center -->
           <nav class="hidden md:flex space-x-6 absolute left-1/2 transform -translate-x-1/2">
-            <a href="{{ url('/user-dashboard') }}" class="text-gray-700 hover:text-blue-600">Dashboard</a>
-            <a href="{{ url('/user-interview') }}" class="text-gray-700 hover:text-blue-600">AI Interview</a>
-            <a href="#" class="text-gray-700 hover:text-blue-600">Personality Test</a>
-            <a href="#" class="text-gray-700 hover:text-blue-600">Gamification</a>
+            <a href="{{ route('applicant.dashboard') }}" class="{{ request()->routeIs('applicant.dashboard') ? 'text-blue-600 font-semibold' : 'text-gray-600 hover:text-gray-900' }} transition-colors">Dashboard</a>
+            <a href="{{ route('applicant.interviewai') }}" class="{{ request()->routeIs('applicant.interviewai') ? 'text-blue-600 font-semibold' : 'text-gray-600 hover:text-gray-900' }} transition-colors">AI Interview</a>
+            <a href="{{ route('applicant.personality') }}" class="{{ request()->routeIs('applicant.personality') ? 'text-blue-600 font-semibold' : 'text-gray-600 hover:text-gray-900' }} transition-colors">Personality Test</a>
+            <a href="{{ route('applicant.gamification') }}" class="{{ request()->routeIs('applicant.gamification') ? 'text-blue-600 font-semibold' : 'text-gray-600 hover:text-gray-900' }} transition-colors">Gamification</a>
           </nav>
+          
+          <!-- Kanan: Logout -->
+          <div class="ml-auto flex items-center">
+              <a href="{{ route('login') }}" class="text-sm font-medium text-gray-600 hover:text-red-600 transition-colors px-3 py-1.5 border border-transparent hover:border-red-100 hover:bg-red-50 rounded-md">
+                  Log Out
+              </a>
+          </div>
       
         </div>
       </header>

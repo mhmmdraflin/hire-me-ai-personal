@@ -3,10 +3,10 @@
         <div class="container-fluid mx-auto px-4">
             <h3 class="text-2xl font-semibold text-black mb-6">{{ $title }}</h3>
 
-            <div class="md:flex md:space-x-6">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8 flex flex-col gap-6">
                 <!-- Kolom Kiri -->
-                <div class="md:w-1/2 mb-6 md:mb-0">
-                    <div class="max-w-xl bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200 p-4">
+                <div class="lg:col-span-8">
+                    <div class="w-full bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
                         <div class="flex justify-between items-center w-full">
                             <div class="max-w-[65%]">
                                 <h3 class="text-lg font-semibold text-gray-800">Profile Completion</h3>
@@ -21,30 +21,29 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-3 gap-4 mt-4">
+                        <div class="grid grid-cols-3 gap-4 mt-6 border-t border-gray-100 pt-4">
                             <div class="block">
-                                <p class="text-gray-600 text-sm">Applications</p>
-                                <p class="font-semibold">200</p>
+                                <p class="text-gray-500 text-xs uppercase tracking-wide">Applications</p>
+                                <p class="font-medium text-lg text-gray-900">0</p>
                             </div>
                             <div class="block">
-                                <p class="text-gray-600 text-sm">Interviews</p>
-                                <p class="font-semibold">200</p>
+                                <p class="text-gray-500 text-xs uppercase tracking-wide">Interviews</p>
+                                <p class="font-medium text-lg text-gray-900">0</p>
                             </div>
                             <div class="block">
-                                <p class="text-gray-600 text-sm">Profile Views</p>
-                                <p class="font-semibold">200</p>
+                                <p class="text-gray-500 text-xs uppercase tracking-wide">Profile Views</p>
+                                <p class="font-medium text-lg text-gray-900">0</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex justify-between items-center mt-4">
-                        <p>AI Reccomendation Jobs</p>
-                        <a href="">View All Reccomendation</a>
+                    <div class="flex justify-between items-center mt-6 mb-4">
+                        <h2 class="text-xl font-semibold text-gray-900">Recommended Jobs</h2>
+                        <a href="#" class="text-blue-600 hover:underline text-sm">View All</a>
                     </div>
 
                     @foreach ($job as $j)
-                        <div
-                            class="max-w-xl bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200 p-4 mb-4">
+                        <div class="w-full bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-4">
                             <div class="flex justify-between items-center w-full">
                                 <div class="max-w-[65%]">
                                     <h3 class="text-lg font-semibold text-gray-800 mb-1">{{ $j->JOB_TITLE }}</h3>
@@ -79,32 +78,22 @@
                                 </div>
 
                                 {{-- Action Buttons --}}
-                                <div class="flex flex-col space-y-2 w-30">
+                                <div class="flex flex-col gap-2 w-32 shrink-0">
                                     <button onclick="toggleModal(true, {{ $j->ID_JOB }})"
-                                        class="bg-blue-600 text-sm text-white font-semibold py-1.5 px-3 rounded-md hover:bg-blue-700 w-full">
+                                        class="bg-blue-600 text-sm text-white font-semibold py-2 px-3 rounded-md hover:bg-blue-700 w-full transition">
                                         Apply Now
                                     </button>
 
                                     <button
-                                        class="bg-gray-200 text-sm text-gray-600 font-semibold py-1.5 px-3 rounded-md hover:bg-gray-300 w-full">
+                                        class="bg-gray-100 text-sm text-gray-700 font-semibold py-2 px-3 rounded-md hover:bg-gray-200 w-full transition">
                                         Save
                                     </button>
                                 </div>
                             </div>
 
-                            {{-- Job Description & AI Match --}}
-                            <div class="mt-2">
-                                <p class="text-sm">{{ Str::limit($j->JOB_DESC, 120) }}</p>
-                                <div class="flex flex-row space-x-2 mt-2">
-                                    <p>AI Match :</p>
-                                    <div class="flex-shrink-0 flex items-center space-x-3 w-40">
-                                        <div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
-                                            {{-- Default 0%, nanti diganti kalau ada hasil dari AI --}}
-                                            <div class="bg-blue-500 h-4 rounded-full" style="width: 0%;"></div>
-                                        </div>
-                                        <p>0%</p>
-                                    </div>
-                                </div>
+                            {{-- Job Description --}}
+                            <div class="mt-4 border-t border-gray-100 pt-3">
+                                <p class="text-sm text-gray-600 leading-relaxed">{{ Str::limit($j->JOB_DESC, 120) }}</p>
                             </div>
                         </div>
                     @endforeach
@@ -112,9 +101,9 @@
                 </div>
 
 
-                <!-- Card -->
-                <div class="md:w-1/2">
-                    <div class="max-w-sm bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200">
+                <!-- Sidebar Kanan -->
+                <div class="lg:col-span-4">
+                    <div class="w-full bg-white rounded-2xl shadow-sm border border-gray-200">
                         <div class="p-4">
                             <h3 class="font-semibold text-lg text-gray-800">Your Profile</h3>
                             <p class="text-sm text-gray-600">CV and personal information</p>
@@ -122,10 +111,8 @@
                         <div class="p-4 text-center">
                             <img src="{{ asset('images/homepage/icon_profile_default.png') }}" alt=""
                                 class="w-20 h-20 rounded-full mx-auto mb-1">
-                            <h2 class="text-md font-semibold text-gray-800">Marcello Ilham</h2>
-                            <p class="text-gray-500 text-sm mb-4">
-                                Senior Frontend Developer
-                            </p>
+                            <h2 class="text-md font-semibold text-gray-900">{{ session('user')['first_name'] ?? session('user')['username'] ?? 'User' }}</h2>
+                            <p class="text-gray-500 text-sm mb-4">Applicant</p>
 
                             <!-- Tag Display (Non-Klikable) -->
                             <div class="flex items-center justify-center space-x-2">

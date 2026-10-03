@@ -10,10 +10,10 @@
 
         <!-- Navigation Menu -->
         <nav class="hidden md:flex space-x-6">
-            <a href="#" class="text-gray-700 hover:text-blue-600">Home</a>
-            <a href="#" class="text-gray-700 hover:text-blue-600">Tentang</a>
-            <a href="#" class="text-gray-700 hover:text-blue-600">Layanan</a>
-            <a href="#" class="text-gray-700 hover:text-blue-600">Kontak</a>
+            <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }} transition-colors">Home</a>
+            <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }} transition-colors">About</a>
+            <a href="{{ route('services') }}" class="{{ request()->routeIs('services') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }} transition-colors">Services</a>
+            <a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }} transition-colors">Contact</a>
         </nav>
 
         <!-- Button Login / Signup -->
@@ -38,10 +38,10 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-        <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Home</a>
-        <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Tentang</a>
-        <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Layanan</a>
-        <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Kontak</a>
+        <a href="{{ route('home') }}" class="block py-2 {{ request()->routeIs('home') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">Home</a>
+        <a href="{{ route('about') }}" class="block py-2 {{ request()->routeIs('about') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">About</a>
+        <a href="{{ route('services') }}" class="block py-2 {{ request()->routeIs('services') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">Services</a>
+        <a href="{{ route('contact') }}" class="block py-2 {{ request()->routeIs('contact') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600' }}">Contact</a>
         <a href="{{ url('/register') }}"
             class="block py-2 mt-2 bg-blue-600 text-white text-center rounded hover:bg-blue-700">
             Register

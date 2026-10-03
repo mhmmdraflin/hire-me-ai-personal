@@ -15,15 +15,13 @@
                     </h1>
 
                     <!-- Judul Besar -->
-                    <h1 class="text-black text-5xl font-bold mt-4 mb-6">
-                        Where <span class="text-blue-600">AI</span> Meets Recruitment
+                    <h1 class="text-black text-5xl font-bold mt-4 mb-6 leading-tight">
+                        A Smarter Way to <span class="text-blue-600">Hire and Get Hired</span>
                     </h1>
 
                     <!-- Deskripsi -->
-                    <p class="leading-relaxed text-black mb-6">
-                        Revolutionize your job search or hiring process with our AI-powered platform that matches the right
-                        talents
-                        with the right opportunities.
+                    <p class="leading-relaxed text-gray-700 mb-6 text-lg">
+                        We analyze skills, experience, and working styles to connect the right people with the right roles, reducing the time spent on manual screening.
                     </p>
 
                     <!-- Tombol Aksi -->
@@ -77,37 +75,33 @@
         <div class="flex gap-6 w-full px-0 md:px-2 justify-center mb-12">
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center mt-8">
-                <div class="bg-white p-6 rounded-lg w-[350px]" style="box-shadow: 15px 15px 30px rgba(59, 130, 246, 0.6);">
-
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm w-[350px]">
                     <div>
-                        <img src="{{ asset('images/homepage/img_brain.png') }}" alt="" class="w-14 h-auto">
+                        <img src="{{ asset('images/homepage/img_brain.png') }}" alt="" class="w-10 h-auto">
                     </div>
-                    <h2 class="mt-7 text-lg font-bold">AI-Powered Matching</h2>
-                    <p class="text-gray-500 mt-3 mb-3">
-                        Our sophisticated algorithms analyze skills, experience, and personality to
-                        find perfect job matches with unprecedented accuracy.
+                    <h2 class="mt-5 text-lg font-semibold text-gray-900">Skill-Based Matching</h2>
+                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                        Our system evaluates experience and core competencies to recommend roles that fit your actual capabilities.
                     </p>
                 </div>
 
-                <div class="bg-white p-6 rounded-lg w-[350px]" style="box-shadow: 20px 20px 35px rgba(30, 209, 45, 0.6);">
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm w-[350px]">
                     <div>
-                        <img src="{{ asset('images/homepage/img_msg.png') }}" alt="" class="w-14 h-auto">
+                        <img src="{{ asset('images/homepage/img_msg.png') }}" alt="" class="w-10 h-auto">
                     </div>
-                    <h2 class="mt-7 text-lg font-bold">Virtual Interview</h2>
-                    <p class="text-gray-500 mt-3 mb-3">
-                        Practice with our realistic AI interviewer and get detailed feedback to improve your interview
-                        performance and confidence.
+                    <h2 class="mt-5 text-lg font-semibold text-gray-900">Interview Practice</h2>
+                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                        Prepare for real interviews using our automated simulation, which provides immediate feedback on your responses.
                     </p>
                 </div>
 
-                <div class="bg-white p-6 rounded-lg w-[350px]" style="box-shadow: 20px 20px 35px rgba(138, 9, 138, 0.6);">
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm w-[350px]">
                     <div>
-                        <img src="{{ asset('images/homepage/img_circle.png') }}" alt="" class="w-14 h-auto">
+                        <img src="{{ asset('images/homepage/img_circle.png') }}" alt="" class="w-10 h-auto">
                     </div>
-                    <h2 class="mt-7 text-lg font-bold">Personality Insights</h2>
-                    <p class="text-gray-500 mt-3 mb-3">
-                        Discover your unique working style and find companies with matching culture and values for greater
-                        job satisfaction.
+                    <h2 class="mt-5 text-lg font-semibold text-gray-900">Work Culture Fit</h2>
+                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                        Assess your working style to find teams and environments where you are most likely to thrive.
                     </p>
                 </div>
             </div>
@@ -222,82 +216,7 @@
 
     </section>
 
-    {{-- Section Keunggulan --}}
-    <section id="success-stories" class="bg-white py-16">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-blue-600 text-xl font-semibold mb-2">TESTIMONIALS</p>
-            <h1 class="text-3xl font-bold mb-6">Success Stories</h1>
-            <p class="text-2xl text-gray-400 max-w-4xl mx-auto">
-                Join thousands of job seekers and recruiters who have found their perfect match
-            </p>
-        </div>
 
-        <div class="flex justify-center mt-10">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
-                <!-- Testimonial Card 1 -->
-                <div class="bg-white shadow-xl p-5 rounded-lg w-[320px]">
-                    <div class="flex items-center justify-between">
-                        <img src="{{ asset('images/homepage/img_brain.png') }}" alt=""
-                            class="w-10 h-10 rounded-full object-cover">
-                        <div class="text-left flex-1 px-6">
-                            <p class="font-bold text-sm">Marcello Ilham</p>
-                            <p class="text-sm">Software Developer</p>
-                            <span class="text-xs text-gray-400">at</span>
-                            <p class="text-sm">Company Name</p>
-                        </div>
-                        <div class="flex space-x-0.5 text-yellow-400">
-                            <!-- Star icons -->
-                            @for ($i = 0; $i < 5; $i++)
-                                <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20">
-                                    <path
-                                        d="M10 15l-5.878 3.09 1.122-6.545L.487 6.91l6.561-.955L10 0l2.952 5.955 6.561.955-4.757 4.635 1.122 6.545z" />
-                                </svg>
-                            @endfor
-                        </div>
-                    </div>
-                    <p class="text-gray-500 mt-2 text-sm leading-relaxed">
-                        Our sophisticated algorithms analyze skills, experience, and personality to
-                        find perfect job matches with unprecedented accuracy.
-                    </p>
-                    <div class="flex items-center justify-between mt-4">
-                        <p class="text-xs text-gray-400">Posted on</p>
-                        <p class="text-xs text-gray-400">May 2025</p>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bg-white shadow-xl p-6 rounded-lg w-[320px]">
-                    <div>
-                        <img src="{{ asset('images/homepage/img_msg.png') }}" alt="" class="w-14 h-auto">
-                    </div>
-                    <h2 class="mt-4 text-lg font-bold">Virtual Interview</h2>
-                    <p class="text-gray-500 mt-2">
-                        Practice with our realistic AI interviewer and get detailed feedback to improve your interview
-                        performance and confidence.
-                    </p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white shadow-xl p-6 rounded-lg w-[320px]">
-                    <div>
-                        <img src="{{ asset('images/homepage/img_circle.png') }}" alt="" class="w-14 h-auto">
-                    </div>
-                    <h2 class="mt-4 text-lg font-bold">Personality Insights</h2>
-                    <p class="text-gray-500 mt-2">
-                        Discover your unique working style and find companies with matching culture and values for greater
-                        job satisfaction.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Total Rating Section (outside the cards) -->
-        <div class="text-center mt-8">
-            <span class="inline-block px-5 py-2 text-sm bg-blue-100 text-blue-700 rounded-full font-semibold shadow-md">
-                ★ Overall Rating: 4.9 / 5.0
-            </span>
-        </div>
-    </section>
 
     <section class="bg-primary">
         <div class="container mx-auto px-4 py-16">
@@ -372,9 +291,7 @@
 
                     <button
                         class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none flex items-center justify-center">
-                        Find Your Dream Job
-                        <img src="{{ asset('images/homepage/icon_arrow.png') }}" alt="Arrow"
-                            class="inline-block w-3 h-3 ml-2">
+                        Create an Account
                     </button>
 
                     <button

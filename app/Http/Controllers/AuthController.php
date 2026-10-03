@@ -55,6 +55,7 @@ class AuthController extends Controller
                 'message' => "Berhasil mendaftar sebagai {$roleName}."
             ]);
         } catch (\Exception $e) {
+            \Log::error('Registration Error: ' . $e->getMessage() . "\n" . $e->getTraceAsString());
             return response()->json([
                 'success' => false,
                 'message' => 'Terjadi kesalahan saat membuat akun.'
@@ -82,13 +83,15 @@ class AuthController extends Controller
 
         $role = DB::table('md_role')->where('ID_ROLE', $user->ROLE)->first();
 
-        Session::put('user', [
+        $request->session()->regenerate();
+        $request->session()->put('user', [
             'email'     => $user->EMAIL_USER,
             'username'  => $user->USERNAME,
             'role'      => $user->ROLE,
             'role_name' => $role ? $role->ROLE : null,
             'id'        => $user->ID,
         ]);
+        $request->session()->save();
 
         $roleName = strtolower($role->ROLE ?? 'user');
         $message = "Selamat datang {$roleName}!";
@@ -98,9 +101,18 @@ class AuthController extends Controller
         } elseif ($role && $role->ROLE == 'RECRUITER') {
             return response()->json(['success' => true, 'message' => $message, 'redirect' => '/recruiter-dashboard']);
         } elseif ($role && $role->ROLE == 'ADMIN') {
-            return response()->json(['success' => true, 'message' => $message, 'redirect' => '/']);
+            return response()->json(['success' => true, 'message' => $message, 'redirect' => '/admin-dashboard']);
         }
 
         return response()->json(['success' => true, 'message' => $message, 'redirect' => '/']);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->forget('user');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login')->with('success', 'Berhasil logout.');
     }
 }

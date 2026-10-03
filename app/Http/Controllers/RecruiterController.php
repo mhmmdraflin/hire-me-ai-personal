@@ -13,14 +13,12 @@ class RecruiterController extends Controller
     {
         $data['title'] = 'Recruiter Dashboard';
         
-        $user = session('user');
-
-    if (!$user) {
-        return redirect('/login'); // fallback kalau session kosong
-    }
-
-    // Ambil data dari md_auth berdasarkan ID dari session
-    $data['recruiter'] = DB::selectOne('SELECT * FROM md_auth WHERE EMAIL_USER = ?', [$user['email']]);
+        // Mock recruiter data for frontend showcase
+        $data['recruiter'] = (object) [
+            'FIRST_NAME' => 'Demo',
+            'LAST_NAME' => 'Recruiter',
+            'EMAIL_USER' => 'recruiter@hireme.ai',
+        ];
 
         return 
         view('recruiter.header', $data).
@@ -35,5 +33,23 @@ class RecruiterController extends Controller
         view('recruiter.header', $data).
         view('recruiter.add_job', $data).
         view('recruiter.footer', $data);
+    }
+
+    public function index_jobs()
+    {
+        $data['title'] = 'Job Listings';
+        return view('recruiter.header', $data).view('recruiter.jobs', $data).view('recruiter.footer', $data);
+    }
+
+    public function index_candidates()
+    {
+        $data['title'] = 'Candidate Tracking';
+        return view('recruiter.header', $data).view('recruiter.candidates', $data).view('recruiter.footer', $data);
+    }
+
+    public function index_analytic()
+    {
+        $data['title'] = 'Recruitment Analytics';
+        return view('recruiter.header', $data).view('recruiter.analytic', $data).view('recruiter.footer', $data);
     }
 }

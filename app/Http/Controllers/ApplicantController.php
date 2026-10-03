@@ -82,6 +82,24 @@ class ApplicantController extends Controller
             view('applicant.footer');
     }
 
+    public function index_personality()
+    {
+        $data['title'] = 'Personality Test';
+        return
+            view('applicant.header') .
+            view('applicant.personality', $data) .
+            view('applicant.footer');
+    }
+
+    public function index_gamification()
+    {
+        $data['title'] = 'Gamification';
+        return
+            view('applicant.header') .
+            view('applicant.gamification', $data) .
+            view('applicant.footer');
+    }
+
     public function index_recruiter_dashboard()
     {
         $data['title'] = 'recruiter Dashboard';
