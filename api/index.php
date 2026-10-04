@@ -1,4 +1,6 @@
 <?php
+// Paksa respon menjadi JSON agar tidak butuh 'view'
+$_SERVER['HTTP_ACCEPT'] = 'application/json';
 
 try {
     require __DIR__.'/../vendor/autoload.php';
