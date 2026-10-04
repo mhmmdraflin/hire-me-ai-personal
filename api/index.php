@@ -27,9 +27,22 @@ try {
     $app->handleRequest(Illuminate\Http\Request::capture());
 } catch (\Throwable $e) {
     echo "<pre>";
-    echo "<h1>INI ERROR ASLINYA:</h1>";
-    echo "Pesan Error: " . $e->getMessage() . "<br><br>";
-    echo "Lokasi File: " . $e->getFile() . "<br>";
-    echo "Baris ke-: " . $e->getLine();
+    echo "=== BONGKAR AKAR MASALAH VERCEL ===\n\n";
+    
+    $error = $e;
+    $urutan = 1;
+    
+    while ($error !== null) {
+        echo "💥 LAPISAN ERROR KE-" . $urutan . "\n";
+        echo "Pesan : " . $error->getMessage() . "\n";
+        echo "File  : " . $error->getFile() . "\n";
+        echo "Baris : " . $error->getLine() . "\n";
+        echo "--------------------------------------------------\n\n";
+        
+        // Gali error sebelumnya (akar masalah)
+        $error = $error->getPrevious();
+        $urutan++;
+    }
+    
     echo "</pre>";
 }
