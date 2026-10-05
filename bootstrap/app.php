@@ -12,6 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->trustProxies(at: '*');
+        $middleware->validateCsrfTokens(except: [
+            '/logout',
+            '/check-cv'
+        ]);
         $middleware->append(\Illuminate\Session\Middleware\StartSession::class);
 
         $middleware->alias([
