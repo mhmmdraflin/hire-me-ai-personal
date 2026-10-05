@@ -68,7 +68,7 @@
 
                                     {{-- Skills --}}
                                     <div class="flex items-center justify-start space-x-2 mt-2">
-                                        @foreach (explode(',', $j->JOB_SKILL) as $skill)
+                                        @foreach (explode(',', $j->JOB_SKILL ?? '') as $skill)
                                             <span
                                                 class="inline-block bg-blue-200 text-blue-700 font-semibold border border-dark text-black text-xs px-3 py-1 rounded-2xl text-center cursor-default">
                                                 {{ trim($skill) }}
