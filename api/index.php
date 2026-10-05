@@ -23,6 +23,11 @@ foreach ($directories as $dir) {
 
 $app->useStoragePath($storagePath);
 
+// Memastikan driver session adalah cookie untuk serverless
+putenv('SESSION_DRIVER=cookie');
+$_ENV['SESSION_DRIVER'] = 'cookie';
+$_SERVER['SESSION_DRIVER'] = 'cookie';
+
 // 4. Jalankan aplikasi ke browser pengguna
 if (method_exists($app, 'handleRequest')) {
     // Penanganan untuk Laravel versi 11 ke atas
