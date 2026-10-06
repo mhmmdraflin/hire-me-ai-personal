@@ -105,38 +105,85 @@
         </div>
     </div>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('loginForm');
+            form.action = '{{ route('login.post') }}';
+
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
 
+                const formData = new FormData(form);
                 const submitBtn = document.getElementById('submitBtn');
                 const originalText = submitBtn.innerText;
-                const role = document.querySelector('input[name="role"]:checked').value;
                 
                 submitBtn.disabled = true;
                 submitBtn.innerText = 'Logging in...';
 
-                // Determine redirect URL based on selected role
-                const redirectUrl = role === 'recruiter' 
-                    ? '{{ url('/recruiter-dashboard') }}' 
-                    : '{{ url('/applicant-dashboard') }}';
-
-                // Simulate network request delay for demo
-                setTimeout(() => {
+                fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    credentials: 'same-origin',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            html: `
+                                <div class="mt-2 mb-2">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Login Successful</h3>
+                                    <p class="text-gray-600 font-medium">${data.message}</p>
+                                </div>
+                            `,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            customClass: {
+                                popup: 'rounded-[24px] shadow-2xl border border-gray-100',
+                                timerProgressBar: 'bg-blue-600'
+                            },
+                            backdrop: `
+                                rgba(255,255,255,0.4)
+                                backdrop-filter
+                                backdrop-blur-md
+                            `,
+                            showClass: {
+                                popup: 'animate__animated animate__zoomIn animate__faster'
+                            },
+                            hideClass: {
+                                popup: 'animate__animated animate__zoomOut animate__faster'
+                            }
+                        }).then(() => {
+                            window.location.href = data.redirect;
+                        });
+                    } else {
+                        submitBtn.disabled = false;
+                        submitBtn.innerText = originalText;
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Login Failed!',
+                            text: data.message || 'Invalid credentials.',
+                            showConfirmButton: true
+                        });
+                    }
+                })
+                .catch(err => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = originalText;
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Login Successful',
-                        text: 'Welcome back!',
-                        showConfirmButton: false,
-                        timer: 1500,
-                        position: 'center'
-                    }).then(() => {
-                        window.location.href = redirectUrl;
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'An error occurred. Please try again.'
                     });
-                }, 800);
+                });
             });
         });
     </script>

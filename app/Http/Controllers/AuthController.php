@@ -117,7 +117,8 @@ class AuthController extends Controller
             ]);
             $request->session()->save();
 
-            $message = "Selamat datang " . strtolower($roleName) . "!";
+            $firstName = !empty($metadata['first_name']) ? $metadata['first_name'] : (!empty($metadata['username']) ? $metadata['username'] : '');
+            $message = $firstName ? "Welcome back, {$firstName}!" : "Welcome back!";
 
             // Arahkan ke dashboard sesuai role
             if ($roleName == 'APPLICANT') {
