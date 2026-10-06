@@ -111,7 +111,12 @@
                         <div class="p-4 text-center">
                             <img src="{{ asset('images/homepage/icon_profile_default.png') }}" alt=""
                                 class="w-20 h-20 rounded-full mx-auto mb-1">
-                            <h2 class="text-md font-semibold text-gray-900">{{ session('user')['first_name'] ?? session('user')['username'] ?? 'User' }}</h2>
+                            @php
+                                $firstName = session('user')['first_name'] ?? '';
+                                $userName = session('user')['username'] ?? '';
+                                $displayName = !empty(trim($firstName)) ? $firstName : (!empty(trim($userName)) ? $userName : 'User');
+                            @endphp
+                            <h2 class="text-md font-semibold text-gray-900">{{ $displayName }}</h2>
                             <p class="text-gray-500 text-sm mb-4">Applicant</p>
 
                             <!-- Tag Display (Non-Klikable) -->
