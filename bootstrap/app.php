@@ -14,7 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->trustProxies(at: '*');
         $middleware->validateCsrfTokens(except: [
             '/logout',
-            '/check-cv'
+            '/check-cv',
+            '/login',
+            '/register'
         ]);
         $middleware->append(\Illuminate\Session\Middleware\StartSession::class);
 
