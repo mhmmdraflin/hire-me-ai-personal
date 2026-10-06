@@ -112,8 +112,7 @@ class AuthController extends Controller
                 'first_name'=> $metadata['first_name'] ?? '',
                 'role'      => $roleId,
                 'role_name' => $roleName,
-                'id'        => $user['id'],
-                'access_token' => $result['access_token']
+                'id'        => $user['id']
             ]);
             $request->session()->save();
 
