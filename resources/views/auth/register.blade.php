@@ -109,6 +109,7 @@
         </div>
     </div>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -138,11 +139,30 @@
                         if (data.success) {
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Success!',
-                                text: data.message,
-                                timer: 2000,
+                                html: `
+                                    <div class="mt-2 mb-2">
+                                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Welcome Aboard!</h3>
+                                        <p class="text-gray-600 font-medium">${data.message}</p>
+                                    </div>
+                                `,
+                                timer: 2500,
+                                timerProgressBar: true,
                                 showConfirmButton: false,
-                                position: 'center'
+                                customClass: {
+                                    popup: 'rounded-[24px] shadow-2xl border border-gray-100',
+                                    timerProgressBar: 'bg-blue-600'
+                                },
+                                backdrop: `
+                                    rgba(255,255,255,0.4)
+                                    backdrop-filter
+                                    backdrop-blur-md
+                                `,
+                                showClass: {
+                                    popup: 'animate__animated animate__zoomIn animate__faster'
+                                },
+                                hideClass: {
+                                    popup: 'animate__animated animate__zoomOut animate__faster'
+                                }
                             }).then(() => {
                                 window.location.href = '{{ route('login') }}';
                             });

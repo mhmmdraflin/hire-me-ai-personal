@@ -54,7 +54,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => "Berhasil mendaftar sebagai {$roleName} via Supabase."
+                'message' => "Successfully registered as " . ucfirst($roleName) . "."
             ]);
 
         } catch (\Exception $e) {
