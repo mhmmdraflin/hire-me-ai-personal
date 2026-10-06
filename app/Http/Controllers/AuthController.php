@@ -22,14 +22,15 @@ class AuthController extends Controller
             // Panggil API Supabase Signup
             $response = Http::withHeaders([
                 'apikey' => env('SUPABASE_KEY'),
+                'Authorization' => 'Bearer ' . env('SUPABASE_KEY'),
                 'Content-Type' => 'application/json'
             ])->post(env('SUPABASE_URL') . '/auth/v1/signup', [
-                'email' => $request->email,
+                'email' => trim($request->email),
                 'password' => $request->password,
                 'data' => [
-                    'first_name' => $request->first_name,
-                    'last_name' => $request->last_name,
-                    'username' => $request->username,
+                    'first_name' => trim($request->first_name),
+                    'last_name' => trim($request->last_name),
+                    'username' => trim($request->username),
                     'role_name' => strtoupper($roleName),
                     'role_id' => $roleId
                 ]
@@ -76,9 +77,10 @@ class AuthController extends Controller
             // Panggil API Supabase Login
             $response = Http::withHeaders([
                 'apikey' => env('SUPABASE_KEY'),
+                'Authorization' => 'Bearer ' . env('SUPABASE_KEY'),
                 'Content-Type' => 'application/json'
             ])->post(env('SUPABASE_URL') . '/auth/v1/token?grant_type=password', [
-                'email' => $request->email,
+                'email' => trim($request->email),
                 'password' => $request->password,
             ]);
 
